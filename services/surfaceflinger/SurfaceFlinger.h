@@ -452,6 +452,11 @@ private:
             bool yswap, bool useIdentityTransform, Transform::orientation_flags rotation);
 
 #ifdef USE_HWC2
+    status_t updateDimensionsLocked(const sp<const DisplayDevice>& displayDevice,
+                                     Transform::orientation_flags* rotation,
+                                     int32_t hardwareRotation,
+                                     uint32_t* requestedWidth, uint32_t* requestedHeight);
+
     status_t captureScreenImplLocked(const sp<const DisplayDevice>& device,
                                      ANativeWindowBuffer* buffer, Rect sourceCrop,
                                      uint32_t reqWidth, uint32_t reqHeight, int32_t minLayerZ,
