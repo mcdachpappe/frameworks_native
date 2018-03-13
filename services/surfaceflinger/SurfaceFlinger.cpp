@@ -4466,8 +4466,6 @@ void SurfaceFlinger::renderScreenImplLocked(
     // get screen geometry
     const int32_t hw_w = hw->getWidth();
     const int32_t hw_h = hw->getHeight();
-    const bool filtering = static_cast<int32_t>(reqWidth) != hw_w ||
-                           static_cast<int32_t>(reqHeight) != hw_h;
 
     // if a default or invalid sourceCrop is passed in, set reasonable values
     if (sourceCrop.width() == 0 || sourceCrop.height() == 0 ||
@@ -4475,6 +4473,9 @@ void SurfaceFlinger::renderScreenImplLocked(
         sourceCrop.setLeftTop(Point(0, 0));
         sourceCrop.setRightBottom(Point(hw_w, hw_h));
     }
+
+    const bool filtering = static_cast<int32_t>(reqWidth) != sourceCrop.width() ||
+            static_cast<int32_t>(reqHeight) != sourceCrop.height();
 
     // ensure that sourceCrop is inside screen
     if (sourceCrop.left < 0) {
