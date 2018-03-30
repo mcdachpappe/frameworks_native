@@ -808,7 +808,6 @@ void InputConsumer::resampleTouchState(nsecs_t sampleTime, MotionEvent* event,
         if (other->idBits.hasBit(id)
                 && shouldResampleTool(event->getToolType(i))) {
             const PointerCoords& otherCoords = other->getPointerById(id);
-            resampledCoords.copyFrom(currentCoords);
             resampledCoords.setAxisValue(AMOTION_EVENT_AXIS_X,
                     lerp(currentCoords.getX(), otherCoords.getX(), alpha));
             resampledCoords.setAxisValue(AMOTION_EVENT_AXIS_Y,
@@ -822,7 +821,6 @@ void InputConsumer::resampleTouchState(nsecs_t sampleTime, MotionEvent* event,
                     alpha);
 #endif
         } else {
-            resampledCoords.copyFrom(currentCoords);
 #if DEBUG_RESAMPLING
             ALOGD("[%d] - out (%0.3f, %0.3f), cur (%0.3f, %0.3f)",
                     id, resampledCoords.getX(), resampledCoords.getY(),
