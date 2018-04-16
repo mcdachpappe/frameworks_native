@@ -467,7 +467,6 @@ private:
             int32_t* displayId);
 
     void updateTouchState(InputMessage& msg);
-    bool rewriteMessage(const TouchState& state, InputMessage& msg);
     void resampleTouchState(nsecs_t frameTime, MotionEvent* event,
             const InputMessage *next);
 
